@@ -7,7 +7,7 @@
     @apply transition-colors duration-200;
   }
   a {
-    @apply transition-colors duration-200 hover:opacity-70;
+    @apply text-surface-on transition-colors duration-200 hover:opacity-70;
   }
   button {
     @apply transition-colors duration-200;
