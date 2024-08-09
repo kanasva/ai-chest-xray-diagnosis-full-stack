@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  div {
+    @apply transition-colors duration-200;
+  }
+  a {
+    @apply text-surface-on transition-colors duration-200 hover:opacity-75;
+  }
+  button {
+    @apply transition-colors duration-200;
+  }
+}
