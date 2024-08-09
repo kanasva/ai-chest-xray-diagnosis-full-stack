@@ -1,4 +1,5 @@
 import { InvokeCommand, LambdaClient } from "@aws-sdk/client-lambda";
+import { unknown } from "zod";
 
 export async function getPrediction(payload: string): Promise<Prediction> {
   const client = new LambdaClient({
@@ -10,7 +11,7 @@ export async function getPrediction(payload: string): Promise<Prediction> {
   });
 
   const command = new InvokeCommand({
-    FunctionName: "chest-xray-prediction",
+    FunctionName: "ai-chest-xray-diagnosis-api",
     InvocationType: "RequestResponse",
     LogType: "None",
     Payload: payload,

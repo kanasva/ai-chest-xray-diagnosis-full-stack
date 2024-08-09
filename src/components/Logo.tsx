@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useAppContext } from "@/app/providers";
 
 export default function Logo() {
-  const { setGradCamName, setOriginalImage, setPrediction } = useAppContext();
+  const { setGradCamName, setOriginalImage, setPrediction, setPredictionErr } =
+    useAppContext();
   return (
     <Link
       href="/"
@@ -14,6 +15,7 @@ export default function Logo() {
         setOriginalImage(null);
         setPrediction(null);
         setGradCamName(null);
+        setPredictionErr(null);
       }}
     >
       <Image

@@ -4,6 +4,7 @@ import { getUser } from "@/auth/actions";
 import { createServerActionProcedure } from "zsa";
 import z from "zod";
 import { getPredictionUseCase } from "@/use-cases/prediction";
+import { Prediction } from "@/data-access/prediction";
 
 const authedProcedure = createServerActionProcedure().handler(async () => {
   try {
@@ -40,10 +41,6 @@ export const getPrediction = authedProcedure
       type: "formData",
     },
   )
-  .timeout(1 * 60 * 1000) // Set the timeout 1 min
-  .retry({
-    maxAttempts: 1,
-  })
   .handler(async ({ input, ctx }) => {
     const img = input.img;
     const base64Img = await convertImgToBase64(img);
@@ -53,13 +50,28 @@ export const getPrediction = authedProcedure
       ssimThreshold: 0.62,
       gradCamThreshold: 0.44,
     });
+
     let prediction;
     try {
-      prediction = await getPredictionUseCase(ctx.id, payload);
+      prediction = await Promise.race([
+        getPredictionUseCase(ctx.id, payload),
+        new Promise((_, reject) =>
+          setTimeout(
+            () =>
+              reject(
+                new Error(
+                  "The operation timed out. This might be due to a cold start. Please try again.",
+                ),
+              ),
+            60 * 1000,
+          ),
+        ),
+      ]);
     } catch (e) {
       throw (e as Error).message;
     }
-    return prediction;
+
+    return prediction as Prediction;
 
     // Helper functions
     async function convertImgToBase64(imgFile: FormDataEntryValue | null) {

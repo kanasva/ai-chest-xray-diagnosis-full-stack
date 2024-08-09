@@ -8,7 +8,8 @@ import { useServerAction } from "zsa-react";
 import { useAppContext } from "../providers";
 
 export default function Main() {
-  const { execute, error: predictionErr } = useServerAction(getPrediction);
+  const { execute } = useServerAction(getPrediction);
+
   const {
     setRemainingQuota,
     prediction,
@@ -16,6 +17,8 @@ export default function Main() {
     originalImage,
     setOriginalImage,
     gradCamName,
+    predictionErr,
+    setPredictionErr,
   } = useAppContext();
 
   async function handleUpload(img: File) {
@@ -23,10 +26,12 @@ export default function Main() {
     const formData = new FormData();
     formData.append("img", img);
     const [prediction, err] = await execute(formData);
-    if (!err) {
+    if (err) {
+      setPredictionErr(err.data);
+    } else {
       setPrediction(prediction);
+      setRemainingQuota((prev) => prev && prev - 1);
     }
-    setRemainingQuota((prev) => prev && prev - 1);
   }
 
   // Upload an image first
@@ -84,6 +89,7 @@ export default function Main() {
               {/* New img button */}
               <Button
                 onPress={() => {
+                  setPredictionErr(null);
                   setOriginalImage(null);
                   setPrediction(null);
                 }}
@@ -96,12 +102,12 @@ export default function Main() {
             // Loading
             <div className="relative h-[500px] w-full rounded-md">
               <div
-                className={`absolute inset-0 rounded-md ${predictionErr?.data ? "bg-error-container" : "animate-pulse bg-surface-container-high"}`}
+                className={`absolute inset-0 rounded-md ${predictionErr ? "bg-error-container" : "animate-pulse bg-surface-container-high"}`}
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                 <p className="px-4 text-center text-surface-on-var">
                   {predictionErr ? (
-                    predictionErr.data
+                    predictionErr
                   ) : (
                     <>
                       {"Processing..."} <br />
@@ -113,9 +119,9 @@ export default function Main() {
                   <Button
                     variant="destructive"
                     onPress={() => {
+                      setPredictionErr(null);
                       setOriginalImage(null);
                       setPrediction(null);
-                      // setGradcam(null);
                     }}
                     className="w-32"
                   >

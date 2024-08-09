@@ -2,6 +2,7 @@
 
 import { Prediction } from "@/data-access/prediction";
 import { createContext, useContext, useState, ReactNode } from "react";
+import { ZSAError } from "zsa";
 
 interface AppContextType {
   remainingQuota: number | null;
@@ -12,6 +13,8 @@ interface AppContextType {
   setPrediction: React.Dispatch<React.SetStateAction<Prediction | null>>;
   gradCamName: string | null;
   setGradCamName: React.Dispatch<React.SetStateAction<string | null>>;
+  predictionErr: string | null;
+  setPredictionErr: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -21,6 +24,7 @@ export function Providers({ children }: { children: ReactNode }) {
   const [originalImage, setOriginalImage] = useState<File | null>(null);
   const [prediction, setPrediction] = useState<Prediction | null>(null);
   const [gradCamName, setGradCamName] = useState<string | null>(null);
+  const [predictionErr, setPredictionErr] = useState<string | null>(null);
 
   return (
     <AppContext.Provider
@@ -33,6 +37,8 @@ export function Providers({ children }: { children: ReactNode }) {
         setPrediction,
         gradCamName,
         setGradCamName,
+        predictionErr,
+        setPredictionErr,
       }}
     >
       {children}
