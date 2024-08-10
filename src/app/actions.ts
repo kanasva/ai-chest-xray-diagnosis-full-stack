@@ -20,7 +20,7 @@ const authedProcedure = createServerActionProcedure().handler(async () => {
   }
 });
 
-const MAX_FILE_SIZE = 4 * 1024 * 1024; // 8MB in bytes
+const MAX_FILE_SIZE = 8 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png"];
 
 export const getPrediction = authedProcedure
@@ -30,7 +30,7 @@ export const getPrediction = authedProcedure
       img: z
         .instanceof(File)
         .refine((file) => file.size <= MAX_FILE_SIZE, {
-          message: "Max image size is 4MB.",
+          message: "Max image size is 8MB.",
         })
         .refine(
           (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
