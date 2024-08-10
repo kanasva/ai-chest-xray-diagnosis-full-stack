@@ -13,3 +13,32 @@
     @apply transition-colors duration-200;
   }
 }
+
+@layer components {
+  .mdx {
+    @apply leading-relaxed; /* Sets a relaxed line height for all elements */
+
+    h1 {
+      @apply mt-6 text-3xl font-semibold;
+    }
+    h2 {
+      @apply mt-4 text-2xl font-medium;
+    }
+    h3 {
+      @apply text-xl font-medium;
+    }
+    p {
+      @apply my-2 text-base leading-relaxed;
+    }
+    a {
+      @apply text-primary;
+    }
+    ul {
+      @apply my-2 list-inside list-disc;
+    }
+    li {
+      @apply pl-6;
+      text-indent: -1.5rem;
+    }
+  }
+}
