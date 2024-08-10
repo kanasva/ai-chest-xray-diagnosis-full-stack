@@ -1,6 +1,4 @@
-export const dynamic = "force-dynamic";
-
-import Content from "@/app/facts/content.mdx";
+import Content from "@/app/facts/Content.mdx";
 
 export default function page() {
   return (

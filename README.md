@@ -24,7 +24,7 @@ This project utilises Next.js 14 as a full-stack framework to deliver diagnoses 
 - [Drizzle ORM](https://orm.drizzle.team/) - For database interactions.
 
 ## Design
-- This project follows the [Material Design 3](https://m3.material.io/) guidelines, especially the colour system
+- This project follows the [Material Design 3](https://m3.material.io/) guidelines, especially the colour system.
 
 ## Project Architecture
 This project uses a layered architecture to ensure modularity, maintainability, and scalability:
