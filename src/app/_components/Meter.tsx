@@ -8,8 +8,8 @@ import { Label } from "../../components/Field";
 import { composeTailwindRenderProps } from "../../components/react-aria";
 import { Tooltip } from "@/components/Tooltip";
 import { Button } from "@/components/Button";
-import { useHover } from "react-aria";
 import { useAppContext } from "../providers";
+import { useHover } from "react-aria";
 
 export interface MeterProps extends AriaMeterProps {
   label: string;
