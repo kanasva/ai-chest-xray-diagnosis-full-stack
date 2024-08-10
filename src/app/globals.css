@@ -16,7 +16,7 @@
 
 @layer components {
   .mdx {
-    @apply leading-relaxed; /* Sets a relaxed line height for all elements */
+    @apply leading-relaxed;
 
     h1 {
       @apply mt-6 text-3xl font-semibold;
