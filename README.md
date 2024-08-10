@@ -3,7 +3,7 @@
 Visit [aichestxray.kanasva.me](https://aichestxray.kanasva.me)
 
 ## TL;DR
-This project utilises Next.js 14 as a full-stack framework to deliver diagnoses for 18 chest X-ray pathologies using [TorchXRayVision](https://github.com/mlmed/torchxrayvision), with the model deployed separately on AWS Lambda.
+This project utilises Next.js 14 as a full-stack framework to deliver diagnoses for 18 chest X-ray pathologies using [TorchXRayVision](https://github.com/mlmed/torchxrayvision), with the model deployed separately on AWS Lambda, see [ai-chest-xray-diagnosis-api](https://github.com/kanasva/ai-chest-xray-diagnosis-api)
 
 ## Features
 - Diagnosis for 18 chest X-ray pathologies, including Atelectasis, Cardiomegaly, Consolidation, Edema, Effusion, Emphysema, Enlarged Cardiomediastinum, Fibrosis, Fracture, Hernia, Infiltration, Lung Lesion, Lung Opacity, Mass, Nodule, Pleural Thickening, Pneumonia, and Pneumothorax.

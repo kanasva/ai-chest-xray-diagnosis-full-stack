@@ -1,7 +1,6 @@
 import { getPrediction } from "@/data-access/prediction";
 import {
   getAndUpdateGlobalQuotaUseCase,
-  getAndUpdateQuotaUseCase,
   getAndUpdateUserQuotaUseCase,
   updateUserQuotaUseCase,
 } from "./quotas";
