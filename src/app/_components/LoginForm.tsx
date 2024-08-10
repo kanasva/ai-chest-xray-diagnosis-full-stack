@@ -24,7 +24,7 @@ export default function LoginForm() {
             {({ close }) => (
               <form className="flex flex-col items-center gap-6">
                 <div className="flex flex-col items-center gap-2">
-                  <h2 className="text-lg font-medium">Acknowledgement</h2>
+                  <h2 className="text-lg font-medium">Disclaimer</h2>
                   <p className="text-secondary">
                     This tool is not for medical use.
                   </p>
